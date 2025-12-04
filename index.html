@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>
-<h1>AKENTEN APPIAH MENKA UNIVERSITY OF SKILLS, TRAINING AND ENTREPRENEURIAL DEVELOPMENT </h1>
-<h3>INFOTESS ASSEMBLY ELECTRONIC ID GENERATOR</h3>
-</title>
+<title>INFOTESS Assembly Electronic ID Generator</title>
+
 <style>
 	body {
 		font-family: Arial, sans-serif;
 		background: #e8f1ff;
-		margin: 0;
-		padding: 0;
-		text-align: center;
-		color: #002e6e;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #002e6e;
 	}
 
 	h1 {
@@ -34,7 +32,7 @@
 		box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 	}
 
-	input {
+	input, select {
 		width: 90%;
 		padding: 10px;
 		margin: 10px 0;
@@ -83,6 +81,26 @@
 		font-weight: bold;
 		color: #003d99;
 	}
+
+	/* ---------- PRINT ONLY THE ID CARD ---------- */
+	@media print {
+		body * {
+			visibility: hidden;
+		}
+		#idCard, #idCard * {
+			visibility: visible;
+		}
+		#idCard {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			box-shadow: none;
+		}
+		#printBtn {
+			display: none;
+		}
+	}
 </style>
 </head>
 
@@ -96,20 +114,32 @@
 	<input type="text" id="repName" placeholder="Enter Full Name">
 	<input type="text" id="repClass" placeholder="Enter Class">
 
+	<!-- Status Dropdown -->
+	<select id="repStatus">
+		<option value="" disabled selected>Select Your Status</option>
+		<option value="Main">Main Rep</option>
+		<option value="Deputy">Deputy Rep</option>
+	</select>
+
 	<button onclick="generateCard()">Generate ID Card</button>
 
 </div>
 
 <div class="card" id="idCard">
 	<div class="card-title">COURSE REPRESENTATIVE CARD</div>
+
 	<p><b>Rep ID:</b> <span id="outId"></span></p>
 	<p><b>Name:</b> <span id="outName"></span></p>
 	<p><b>Class:</b> <span id="outClass"></span></p>
+	<p><b>Status:</b> <span id="outStatus"></span></p>
+
+	<!-- PRINT BUTTON -->
+	<button id="printBtn" onclick="printCard()">Print / Save as PDF</button>
 </div>
 
 <div class="footer">
-	Kwakye Bernard <br>
-	( Infotess General Secretary )
+	Project prounded by Kwakye Bernard <br>
+	( Infotess General Secretary 2021/2022 )
 </div>
 
 <script>
@@ -117,17 +147,23 @@ function generateCard() {
 	const repId = document.getElementById("repId").value;
 	const repName = document.getElementById("repName").value;
 	const repClass = document.getElementById("repClass").value;
+	const repStatus = document.getElementById("repStatus").value;
 
-	if (repId === "" || repName === "" || repClass === "") {
-		alert("Please fill all fields!");
+	if (repId === "" || repName === "" || repClass === "" || repStatus === "") {
+		alert("Please fill all fields, including Status!");
 		return;
 	}
 
 	document.getElementById("outId").innerText = repId;
 	document.getElementById("outName").innerText = repName;
 	document.getElementById("outClass").innerText = repClass;
+	document.getElementById("outStatus").innerText = repStatus;
 
 	document.getElementById("idCard").style.display = "block";
+}
+
+function printCard() {
+	window.print();
 }
 </script>
 
