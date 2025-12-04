@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>
+<h1>AKENTEN APPIAH MENKA UNIVERSITY OF SKILLS, TRAINING AND ENTREPRENEURIAL DEVELOPMENT </h1>
+<h3>INFOTESS ASSEMBLY ELECTRONIC ID GENERATOR</h3>
+</title>
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background: #e8f1ff;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		color: #002e6e;
+	}
 
+	h1 {
+		background: #0057d8;
+		color: white;
+		padding: 20px;
+		margin: 0;
+		font-size: 22px;
+	}
+
+	.container {
+		margin: 30px auto;
+		width: 90%;
+		max-width: 500px;
+		background: white;
+		padding: 20px;
+		border-radius: 12px;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	}
+
+	input {
+		width: 90%;
+		padding: 10px;
+		margin: 10px 0;
+		border: 1px solid #0057d8;
+		border-radius: 6px;
+	}
+
+	button {
+		background: #0057d8;
+		color: white;
+		border: none;
+		padding: 12px 20px;
+		border-radius: 6px;
+		cursor: pointer;
+		font-size: 16px;
+		margin-top: 10px;
+		width: 95%;
+	}
+
+	button:hover {
+		background: #003d99;
+	}
+
+	.card {
+		margin: 25px auto;
+		width: 90%;
+		max-width: 350px;
+		background: white;
+		border: 2px solid #0057d8;
+		border-radius: 10px;
+		text-align: left;
+		padding: 15px;
+		display: none;
+	}
+
+	.card-title {
+		font-size: 18px;
+		font-weight: bold;
+		color: #0057d8;
+		text-align: center;
+		margin-bottom: 8px;
+	}
+
+	.footer {
+		margin-top: 30px;
+		font-weight: bold;
+		color: #003d99;
+	}
+</style>
+</head>
+
+<body>
+
+<h1>INFOTESS ASSEMBLY ELECTRONIC ID GENERATOR</h1>
+
+<div class="container">
+
+	<input type="text" id="repId" placeholder="Enter Representative ID">
+	<input type="text" id="repName" placeholder="Enter Full Name">
+	<input type="text" id="repClass" placeholder="Enter Class">
+
+	<button onclick="generateCard()">Generate ID Card</button>
+
+</div>
+
+<div class="card" id="idCard">
+	<div class="card-title">COURSE REPRESENTATIVE CARD</div>
+	<p><b>Rep ID:</b> <span id="outId"></span></p>
+	<p><b>Name:</b> <span id="outName"></span></p>
+	<p><b>Class:</b> <span id="outClass"></span></p>
+</div>
+
+<div class="footer">
+	Kwakye Bernard <br>
+	( Infotess General Secretary )
+</div>
+
+<script>
+function generateCard() {
+	const repId = document.getElementById("repId").value;
+	const repName = document.getElementById("repName").value;
+	const repClass = document.getElementById("repClass").value;
+
+	if (repId === "" || repName === "" || repClass === "") {
+		alert("Please fill all fields!");
+		return;
+	}
+
+	document.getElementById("outId").innerText = repId;
+	document.getElementById("outName").innerText = repName;
+	document.getElementById("outClass").innerText = repClass;
+
+	document.getElementById("idCard").style.display = "block";
+}
+</script>
+
+</body>
+</html>
